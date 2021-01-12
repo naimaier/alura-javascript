@@ -21,3 +21,10 @@ const cadastrarClientes = (nome, cpf) => {
         return resp.body
     })
 }
+
+//Delete
+const deletarCliente = (id) => {
+    return fetch(`http://localhost:4000/clientes/cliente/${id}`, {
+        method: 'DELETE'
+    })
+}

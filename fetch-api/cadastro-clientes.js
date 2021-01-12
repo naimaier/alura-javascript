@@ -1,5 +1,6 @@
 const formCadastroCliente = document.querySelector('[data-form]')
 
+// Adicionando um listener ao botão de cadastro
 formCadastroCliente.addEventListener('submit', event => {
     //primeira coisa é prevenir o comportamento padrao do submit (enviar os dados e recarregar)
     event.preventDefault() 
