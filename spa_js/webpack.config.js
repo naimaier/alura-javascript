@@ -8,7 +8,7 @@ module.exports = {
         open: true,
         contentBase: "dist"
     },
-    entry: "./src/componentes/lista/listagem-cliente.js",
+    entry: "./src/main.js",
     output: {
         //adicionado para resolver um erro "Error: Automatic publicPath is not supported in this browser"
         publicPath: '',

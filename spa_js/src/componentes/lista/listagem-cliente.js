@@ -1,9 +1,4 @@
-import {
-  deletaCliente,
-  listarClientes
-} from '../../api/cliente.js'
-import inicializaCadastro from '../cadastro/componente-cadastro.js'
-
+import {deletaCliente,listarClientes} from '../../api/cliente.js'
 import '../../assets/css/clientes.css'
 
 const removeCliente = (id) => {
@@ -14,54 +9,61 @@ const removeCliente = (id) => {
   }
 }
 
-const conteudo = 
-`<thead class="thead-dark">
-  <tr>
-    <th scope="col">CPF</th>
-    <th scope="col">Nome</th>
-    <th scope="col"></th>
-    <th scope="col"><a class="btn btn-primary">Novo Cliente</a></th>
-  </tr>
-</thead>`
+const criarBotaoExcluir = (id) => {
+  const botao = document.createElement('button')
+  botao.classList.add('btn', 'btn-danger')
+  botao.innerHTML = 'Excluir'
 
-const container = document.querySelector('[data-container]')
-const tabela = document.createElement('table')
-
-tabela.innerHTML = conteudo
-tabela.classList.add('table')
-container.appendChild(tabela)
-
-const novoCliente = document.querySelector('.btn')
-
-novoCliente.addEventListener('click', () => {
-  inicializaCadastro()
-})
-
-const corpoTabela = document.createElement('tbody')
-
-const exibeCliente = (cpf, nome, id) => {
-    const linha = document.createElement('tr');
-
-    const conteudoLinha = `
-    <td>${cpf}</td>
-    <td>${nome}</td>
-    <button type="button" class="btn btn-danger" onclick="removeCliente(${id})">Excluir</button>
-    <a href="./componentes/edita/edita-clientes.html?id=${id}">
-    <button type=""button class="btn btn-info">Editar</button>
-    </a>`
-  
-    linha.innerHTML = conteudoLinha;
-    return linha;
-  };
-  
-  listarClientes().then( exibe => {
-  exibe.forEach(indice => {
-    corpoTabela.appendChild(exibeCliente(indice.cpf, indice.nome, indice.id))
+  botao.addEventListener('click', () => {
+    removeCliente(id)
   })
- })
 
- tabela.appendChild(corpoTabela)
-  
-  
- 
+  return botao
+}
 
+const criaCorpoTabela = tabela => {
+  const corpoTabela = document.createElement('tbody')
+
+  const exibeCliente = (cpf, nome, id) => {
+      const linha = document.createElement('tr');
+  
+      const conteudoLinha = `
+      <td>${cpf}</td>
+      <td>${nome}</td>
+      <button type="button" class="btn btn-info" onclick="navegacao('/edita?id=${id}'); return false;">Editar</button>`
+    
+      linha.innerHTML = conteudoLinha;
+      linha.appendChild(criarBotaoExcluir(id))
+      return linha;
+    };
+    
+  listarClientes().then( exibe => {
+    exibe.forEach(indice => {
+      corpoTabela.appendChild(exibeCliente(indice.cpf, indice.nome, indice.id))
+    })
+  })
+
+  tabela.appendChild(corpoTabela)
+}
+
+const inicializaTabela = () => {
+  const cabecalho = 
+  `<thead class="thead-dark">
+  <tr>
+  <th scope="col">CPF</th>
+  <th scope="col">Nome</th>
+  <th scope="col"></th>
+  <th scope="col"><a class="btn btn-primary" onclick="navegacao('/cadastro'); return false;">Novo Cliente</a></th>
+  </tr>
+  </thead>`
+  
+  const tabela = document.createElement('table')
+  tabela.innerHTML = cabecalho
+  tabela.classList.add('table')
+
+  criaCorpoTabela(tabela)
+
+  return tabela
+}
+
+export default inicializaTabela

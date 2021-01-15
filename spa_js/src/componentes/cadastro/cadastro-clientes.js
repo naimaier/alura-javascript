@@ -1,10 +1,9 @@
 import validaCPF from '../valida/validaCPF.js'
 import cadastrarClientes from '../../api/cliente.js'
 
-const eventoEnvia = (formCadastroCliente) => {
-    //const formCadastroCliente = document.querySelector("[data-form]")
+const eventoEnvia = form => {
     
-    formCadastroCliente.addEventListener("submit",
+    form.addEventListener("submit",
         event => { 
             event.preventDefault()
     

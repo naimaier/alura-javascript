@@ -1,11 +1,10 @@
-import eventoEnvia from "./cadastro-clientes.js"
+import eventoForm from "./edita-cliente"
 
-
-const inicializaCadastro = () => {
+const inicializaFormEdicao = () => {
   const form = document.createElement('form')
-  
-  const cadastro = 
-  `<div class="container">
+  const formEdicao =
+  `<form data-form>
+        <div class="container">
     <div class="form-group">
       <label>CPF</label>
       <input type="number" class="form-control" data-cpf placeholder="Digite seu CPF aqui" />
@@ -14,14 +13,16 @@ const inicializaCadastro = () => {
       <label>Nome</label>
       <input type="text" class="form-control" data-nome placeholder="Digite seu nome aqui" />
     </div>
+    <div data-sucesso></div>
     <button type="submit" class="btn btn-primary">Enviar</button>
-  </div>`
+    </div>
+  </form>`
   
-  form.innerHTML = cadastro
-  
-  eventoEnvia(form)
+  form.innerHTML = formEdicao
+
+  eventoForm(form)
 
   return form
 }
 
-export default inicializaCadastro
+export default inicializaFormEdicao
