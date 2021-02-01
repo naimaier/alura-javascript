@@ -1,5 +1,5 @@
 import validaCPF from '../valida/validaCPF.js'
-import cadastrarClientes from '../../api/cliente.js'
+import {cadastrarClientes} from '../../api/cliente.js'
 
 const eventoEnvia = form => {
     
