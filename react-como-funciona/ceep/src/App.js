@@ -1,13 +1,16 @@
-function App() {
-  return (
-    <section>
-      <form>
-        <input type="text" placeholder="Título"/>
-        <textarea placeholder="Escreva a sua nota..." />
-        <button>Criar Nota</button>
-      </form>
-    </section>
-  );
+import { Component } from "react";
+import FormularioCadastro from "./components/FormularioCadastro";
+import ListaDeNotas from "./components/ListaDeNotas";
+
+class App extends Component {
+  render() {
+    return (
+      <section>
+        <FormularioCadastro/>
+        <ListaDeNotas/>
+      </section>
+    );
+  }
 }
 
 export default App;
